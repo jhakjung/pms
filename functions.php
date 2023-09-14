@@ -101,6 +101,7 @@ add_filter( 'upload_mimes', function( $existing_mimes ) {
 	$existing_mimes['svg'] = 'application/msedge';
 	$existing_mimes['dat'] = 'application/wordpad';
 	$existing_mimes['dwg'] = 'application/cad';
+	$existing_mimes['stp'] = 'application/cad';
 	return $existing_mimes;
   } );
 
