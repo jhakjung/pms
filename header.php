@@ -14,7 +14,7 @@
 
 <body <?php body_class(); ?>>
     <!-- Responsive navbar-->
-    <nav class="site-header navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="site-header navbar navbar-expand-lg navbar-dark bg-dark mb-2">
         <div class="container d-flex flex-sm-wrap justify-content-between align-content-center py-2">
             <div class="w-auto float-left">
                 <a class="fs-3 navbar-brand text-left" href="<?php echo esc_url(site_url('/')); ?>"><?php bloginfo('name'); ?></a>

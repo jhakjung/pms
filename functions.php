@@ -9,6 +9,7 @@ function enqueue_custom_scripts() {
 	wp_enqueue_style('main-css', get_theme_file_uri('/assets/styles/bootstrap.css'));
 	wp_enqueue_script('fa-js', '//kit.fontawesome.com/61b7275f5f.js', 'NULL', '5.9.0', false);
 	wp_enqueue_script('main-js', get_theme_file_uri('bundled.js'), 'NULL', '1.0', true);
+	wp_enqueue_script('custom-js', get_theme_file_uri('/assets/scripts/custom.js'), array('jquery'), '1.0', true);
 	wp_enqueue_style('my-style', get_stylesheet_uri());
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
@@ -100,6 +101,7 @@ add_filter( 'upload_mimes', function( $existing_mimes ) {
 	$existing_mimes['svg'] = 'application/msedge';
 	$existing_mimes['dat'] = 'application/wordpad';
 	$existing_mimes['dwg'] = 'application/cad';
+	$existing_mimes['stp'] = 'application/cad';
 	return $existing_mimes;
   } );
 
@@ -257,5 +259,12 @@ function my_custom_mime_types( $mimes ) {
 	unset( $mimes['exe'] );
 
 	return $mimes;
-	}
-	add_filter( 'upload_mimes', 'my_custom_mime_types' );
+}
+add_filter( 'upload_mimes', 'my_custom_mime_types' );
+
+// 에디터 화면에서 카테고리 안 보이게
+function hide_category_metabox() {
+	remove_meta_box('categorydiv', 'post', 'side');
+}
+
+add_action('admin_menu', 'hide_category_metabox');

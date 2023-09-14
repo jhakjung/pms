@@ -27,7 +27,7 @@
         </div>
         <div class="p-3">
             <div class="card__group">
-                <?php custom_get_tax_list('post_tag', 'fs-7 badge badge__yellow m-1'); ?>
+                <?php custom_get_tax_list('post_tag', 'fs-7 badge badge__dark m-1'); ?>
             </div>
         </div>
     </div>
