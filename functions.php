@@ -268,3 +268,12 @@ function hide_category_metabox() {
 }
 
 add_action('admin_menu', 'hide_category_metabox');
+
+// 모바일에서 admin bar 숨기기
+function hide_admin_bar_on_mobile() {
+    if (wp_is_mobile()) {
+        add_filter('show_admin_bar', '__return_false');
+    }
+}
+
+add_action('wp_loaded', 'hide_admin_bar_on_mobile');
