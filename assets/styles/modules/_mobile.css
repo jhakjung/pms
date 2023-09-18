@@ -12,4 +12,14 @@
     span.astm-search-menu {
         display: none !important;
     }
+
+    .mx-auto.w-auto {
+        /* 모바일에서 .w-auto 클래스 비활성화 */
+        width: auto !important;
+    }
+    .w-25 {
+        /* 모바일에서 .w-25 클래스 활성화 */
+        width: 25% !important;
+    }
+
 }

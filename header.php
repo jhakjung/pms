@@ -20,7 +20,7 @@
                 <a class="fs-3 navbar-brand text-left" href="<?php echo esc_url(site_url('/')); ?>"><?php bloginfo('name'); ?></a>
             </div>
 
-            <div class="mx-auto w-auto">
+            <div class="mx-auto w-auto custom-search w-25">
                     <?php echo do_shortcode('[ivory-search id="7" title="AJAX Search Form"]'); ?>
             </div>
 
