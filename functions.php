@@ -179,14 +179,23 @@ function ourHeaderUrl() {
 add_filter('login_headerurl', 'ourHeaderUrl');
 
 // 구독자가 로그인하면 홈으로
-function redirectSubsToFrontend() {
-	$ourCurrentUser = wp_get_current_user();
-	if (count($ourCurrentUser->roles) == 1 AND $ourCurrentUser->roles[0] == 'subscriber') {
-		wp_redirect(site_url('/'));
-		exit;
-	}
+// function redirectSubsToFrontend() {
+// 	$ourCurrentUser = wp_get_current_user();
+// 	if (count($ourCurrentUser->roles) == 1 AND $ourCurrentUser->roles[0] == 'peer') {
+// 		wp_redirect(site_url('/'));
+// 		exit;
+// 	}
+// }
+// add_action('admin_init', 'redirectSubsToFrontend');
+function redirect_subscribers_to_home() {
+    if (is_admin() && current_user_can('subscriber') && !wp_doing_ajax()) {
+        wp_redirect(home_url());
+        exit;
+    }
 }
-add_action('admin_init', 'redirectSubsToFrontend');
+add_action('admin_init', 'redirect_subscribers_to_home');
+
+
 
 // 구독자인 경우 어드민바 No Show
 add_action('init', function() {
@@ -194,8 +203,7 @@ add_action('init', function() {
 	  show_admin_bar(true);
 	} if (current_user_can('subscriber')) {
 		show_admin_bar(false);
-	}
-});
+}});
 
 // 가입자 등록 확장
 function custom_user_register_fields() {
