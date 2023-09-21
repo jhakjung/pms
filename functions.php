@@ -178,22 +178,16 @@ function ourHeaderUrl() {
 }
 add_filter('login_headerurl', 'ourHeaderUrl');
 
-// 구독자가 로그인하면 홈으로
-// function redirectSubsToFrontend() {
-// 	$ourCurrentUser = wp_get_current_user();
-// 	if (count($ourCurrentUser->roles) == 1 AND $ourCurrentUser->roles[0] == 'peer') {
-// 		wp_redirect(site_url('/'));
-// 		exit;
-// 	}
-// }
-// add_action('admin_init', 'redirectSubsToFrontend');
-function redirect_subscribers_to_home() {
-    if (is_admin() && current_user_can('subscriber') && !wp_doing_ajax()) {
-        wp_redirect(home_url());
-        exit;
+//
+function redirect_after_login($username, $user) {
+    $allowed_roles = array('subscriber', 'manager', 'author'); // 원하는 역할 추가
+
+    if (array_intersect($allowed_roles, $user->roles)) {
+        wp_redirect(home_url()); // 원하는 리디렉션 URL로 변경 가능
+        exit();
     }
 }
-add_action('admin_init', 'redirect_subscribers_to_home');
+add_action('wp_login', 'redirect_after_login', 10, 2);
 
 
 
